@@ -1095,13 +1095,96 @@ print(m.a)
 #using class method in python
 class emplo:
     a = 1
-    @classmethod
+    @classmethod #here we used class method to print the class variable
     def show(cls):
         print(f"the class value is {cls.a}")
 
+    @property #here we used property decorator to get the value of the instance variable
+    def name(self):
+        return f"{self.fname} {self.lname}"
+
+    @name.setter #here we used setter decorator to set the value of the instance variable
+    def name(self,value):
+        self.fname = value.split(" ")[0]
+        self.lname = value.split(" ")[1]
 e = emplo()
 e.a = 23
+
+e.name = "vipul singh" #here we set the value of the instance variable using setter decorator
+print(e.name)
+
 e.show()
+
+
+
+#here numbers can be added using operator overloading in python
+class number:
+    def __init__(self, n):
+        self.n = n
+
+    def __add__(self, num):
+        return self.n + num.n
+
+n = number(1)
+m = number(2)
+
+print(n+m)
+
+
+
+#this is a program to make a 2d vector and 3d vector using class and inheritance
+class TWODVECTOR:
+    def __init__(self , i , j ):
+        self.i = i
+        self.j = j
+
+    def show(self):
+        print(f"the 2d vector is {self.i}i + {self.j}j")
+
+class THREEDVECTOR(TWODVECTOR):
+    def __init__(self ,i,j,k):
+        super().__init__(i,j)
+        self.k = k
+
+    def show(self):
+        print(f"the 3d vector is {self.i}i +{self.j}j +{self.k}k")
+
+a = TWODVECTOR(1,2)
+a.show()
+b = THREEDVECTOR(4,2,3)
+b.show()
+
+
+class animals:
+    a = "hey dog"
+class pets(animals):
+    pass
+class dog(pets):
+    @staticmethod
+    def bark():
+        print("bow bow")
+
+x = dog()
+print(x.a)
+x.bark()
+
+
+class employee:
+    salary = 234
+    increment = 20
+
+    @property
+    def salaryAfterIncrement(self):
+        return (self.salary + self.salary * (self.increment/100))
+
+    @salaryAfterIncrement.setter
+    def salaryAfterIncrement(self , salary):
+        self.increment = ((salary/self.salary) -1)*100
+
+e = employee()
+print(e.salaryAfterIncrement)
+e.salaryAfterIncrement
+print(e.increment)
 
 
 
